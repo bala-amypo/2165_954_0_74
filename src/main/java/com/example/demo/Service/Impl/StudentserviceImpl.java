@@ -1,28 +1,65 @@
+// package com.example.demo.Service.Impl;
+// import java.util.*;
+// import org.springframework.stereotype.Service;
+
+// import com.example.demo.Entity.Studententity;
+// @Service
+// public class StudentserviceImpl implements Studentservice{
+//     private final Map<Long,Studententity>store=new HashMap<>();
+//     private long counter=1;
+//     @Override
+//     public Studententity insertStudent(Studententity st){
+//         st.setId(counter++);
+//         store.put(st.getId(),st);
+//         return st;
+//     }
+//     @Override
+//     public List<Studententity>getAllStudents(){
+//         return new ArrayList<>(store.values());
+//     }
+//     @Override 
+//     public Optional<Studententity>getOneStudent(Long id){
+//         return Optional.ofNullable(store.get(id));
+//     }
+//     @Override
+//     public void deleteStudent(Long id){
+//         store.remove(id);
+//     }
+// }
 package com.example.demo.Service.Impl;
+
 import java.util.*;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entity.Studententity;
+import com.example.demo.Service.Studentservice;
+
 @Service
-public class StudentserviceImpl implements Studentservice{
-    private final Map<Long,Studententity>store=new HashMap<>();
-    private long counter=1;
+public class StudentserviceImpl implements Studentservice {
+
+    private final Map<Integer, Studententity> store = new HashMap<>();
+    private int counter = 1;
+
     @Override
-    public Studententity insertStudent(Studententity st){
+    public Studententity insertStudent(Studententity st) {
         st.setId(counter++);
-        store.put(st.getId(),st);
+        store.put(st.getId(), st);
         return st;
     }
+
     @Override
-    public List<Studententity>getAllStudents(){
+    public List<Studententity> getAllStudents() {
         return new ArrayList<>(store.values());
     }
-    @Override 
-    public Optional<Studententity>getOneStudent(Long id){
+
+    @Override
+    public Optional<Studententity> getOneStudent(Integer id) {
         return Optional.ofNullable(store.get(id));
     }
+
     @Override
-    public void deleteStudent(Long id){
+    public void deleteStudent(Integer id) {
         store.remove(id);
     }
 }
