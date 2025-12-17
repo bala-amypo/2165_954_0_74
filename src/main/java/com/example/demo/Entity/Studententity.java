@@ -5,7 +5,7 @@ public class Studententity{
     private String name;
     private string email;
     public int getid(){
-        retrun id;
+        return id;
 
     }
     public void setId(int id){
@@ -13,13 +13,24 @@ public class Studententity{
 
     }
     public String getName(){
-        retrun name;
+        return name;
 
     }
-    public String getEmail(){
-        retrun email;
+    public void setName(String name){
+        this.name=name;   
     }
-    public Studententity(int id.String name,String email){
-        this.id=
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String email){
+        this.email=email;
+    }
+    public Studententity(int id,String name,String email){
+        this.id=id;
+        this.name=name;
+        this.email=email;
+    }
+    public Studententity(){
+
     }
 }
