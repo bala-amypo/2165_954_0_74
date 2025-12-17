@@ -4,7 +4,7 @@ public class Studententity{
     private int id;
     private String name;
     private string email;
-    public int getid(){
+    public int getId(){
         return id;
 
     }
