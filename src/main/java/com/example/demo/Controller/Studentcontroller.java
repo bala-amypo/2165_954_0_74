@@ -19,6 +19,14 @@ public class Studentcontroller{
     Studentservice ser;
     @PostMapping("/Postadd")
     public Studententity post(@RequestBody Studententity st){
-        
+        return ser.saveData(st);
+    }
+    @GetMapping("/Getadd{id}")
+    public Studententity get(@PathVariableint id){
+        return ser.getStudent(id);
+    }
+    @GetMapping("/getAll")
+    public Map<Integer,Studententity>getAllStudents(){
+        return ser.getAll
     }
 }
