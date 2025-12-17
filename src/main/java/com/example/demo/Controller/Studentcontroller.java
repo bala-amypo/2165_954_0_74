@@ -1,6 +1,6 @@
 package com.example.demo.Controller;
 
-import java.utile.Map;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +21,8 @@ public class Studentcontroller{
     public Studententity post(@RequestBody Studententity st){
         return ser.saveData(st);
     }
-    @GetMapping("/Getadd{id}")
-    public Studententity get(@PathVariableint id){
+    @GetMapping("/Getadd/{id}")
+    public Studententity get(@PathVariable int id){
         return ser.getStudent(id);
     }
     @GetMapping("/getAll")
