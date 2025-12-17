@@ -3,7 +3,7 @@ package com.example.demo.Entity;
 public class Studententity{
     private int id;
     private String name;
-    private string email;
+    private String email;
     public int getId(){
         return id;
 
