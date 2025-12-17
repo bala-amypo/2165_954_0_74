@@ -37,7 +37,6 @@
 package com.example.demo.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,28 +51,31 @@ public class Studentcontroller {
     @Autowired
     private Studentservice ser;
 
-    // CREATE
     @PostMapping
-    public Studententity addStudent(@RequestBody Studententity st) {
-        return ser.insertStudent(st);
+    public Studententity save(@RequestBody Studententity student) {
+        return ser.saveData(student);
     }
 
-    // READ ALL
+    @GetMapping("/{id}")
+    public Studententity getById(@PathVariable Long id) {
+        return ser.getStudent(id);
+    }
+
     @GetMapping
-    public List<Studententity> getAllStudents() {
+    public List<Studententity> getAll() {
         return ser.getAllStudents();
     }
 
-    // READ ONE
-    @GetMapping("/{id}")
-    public Optional<Studententity> getStudent(@PathVariable Integer id) {
-        return ser.getOneStudent(id);
+    @PutMapping("/{id}")
+    public Studententity update(
+            @PathVariable Long id,
+            @RequestBody Studententity student) {
+        return ser.updateStudent(id, student);
     }
 
-    // DELETE
     @DeleteMapping("/{id}")
-    public String deleteStudent(@PathVariable Integer id) {
+    public String delete(@PathVariable Long id) {
         ser.deleteStudent(id);
-        return "Student deleted with id " + id;
+        return "Deleted Successfully";
     }
 }

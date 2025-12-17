@@ -29,17 +29,17 @@
 package com.example.demo.Service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.example.demo.Entity.Studententity;
 
 public interface Studentservice {
 
-    Studententity insertStudent(Studententity st);
+    Studententity saveData(Studententity student);
+
+    Studententity getStudent(Long id);
 
     List<Studententity> getAllStudents();
 
-    Optional<Studententity> getOneStudent(Integer id);
+    Studententity updateStudent(Long id, Studententity student);
 
-    void deleteStudent(Integer id);
+    void deleteStudent(Long id);
 }

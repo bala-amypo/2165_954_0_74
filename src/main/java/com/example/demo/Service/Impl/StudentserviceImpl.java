@@ -26,20 +26,51 @@
 //         store.remove(id);
 //     }
 // }
-package com.example.demo.Service;
+package com.example.demo.Service.Impl;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.demo.Entity.Studententity;
+import com.example.demo.Repository.Studentrepository;
+import com.example.demo.Service.Studentservice;
 
-public interface Studentservice {
+@Service
+public class StudentserviceImpl implements Studentservice {
 
-    Studententity saveData(Studententity student);
+    @Autowired
+    private Studentrepository repo;
 
-    Studententity getStudent(Long id);
+    @Override
+    public Studententity saveData(Studententity student) {
+        return repo.save(student);
+    }
 
-    List<Studententity> getAllStudents();
+    @Override
+    public Studententity getStudent(Long id) {
+        return repo.findById(id).orElse(null);
+    }
 
-    Studententity updateStudent(Long id, Studententity student);
+    @Override
+    public List<Studententity> getAllStudents() {
+        return repo.findAll();
+    }
 
-    void deleteStudent(Long id);
+    @Override
+    public Studententity updateStudent(Long id, Studententity student) {
+        Studententity existing = repo.findById(id).orElse(null);
+        if (existing != null) {
+            existing.setName(student.getName());
+            existing.setAge(student.getAge());
+            return repo.save(existing);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteStudent(Long id) {
+        repo.deleteById(id);
+    }
 }
