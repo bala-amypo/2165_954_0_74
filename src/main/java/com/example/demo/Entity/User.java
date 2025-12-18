@@ -10,28 +10,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
-    // ✅ No-arg constructor (REQUIRED by JPA)
+    // ✅ No-args constructor
     public User() {
     }
 
-    // ✅ Parameterized constructor
-    public User(Long id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    // ✅ Getters & Setters
+    // ✅ Getters and Setters
     public Long getId() {
         return id;
     }
@@ -56,9 +45,11 @@ public class User {
         this.email = email;
     }
 
-    // ⚠️ In real apps, password must be encrypted
     public String getPassword() {
         return password;
     }
-    
-    public void setPassword(Strin
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}

@@ -6,42 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.Entity.User;
-import com.example.demo.Service.UserService;
+import com.example.demo.Service.Userservice;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin("*")   // helps avoid CORS issues on Amypo
 public class User_control {
 
     @Autowired
-    private UserService userService;
+    private Userservice userservice;
 
-    // ✅ CREATE USER
+    // CREATE
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+        return userservice.createUser(user);
     }
 
-    // ✅ GET USER BY ID
+    // READ BY ID
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
+        return userservice.getUserById(id);
     }
 
-    // ✅ GET ALL USERS
+    // READ ALL
     @GetMapping
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+        return userservice.getAllUsers();
     }
 
-    // ✅ UPDATE USER
+    // UPDATE
     @PutMapping("/{id}")
-    public User updateUser(
-            @PathVariable Long id,
-            @RequestBody User user) {
-        return userService.updateUser(id, user);
+    public User updateUser(@PathVariable Long id, @RequestBody User user) {
+        return userservice.updateUser(id, user);
     }
 
-    // ✅ DELETE USER
+    // DELETE
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVa
+    public String deleteUser(@PathVariable Long id) {
+        userservice.deleteUser(id);
+        return "User deleted successfully";
+    }
+}
