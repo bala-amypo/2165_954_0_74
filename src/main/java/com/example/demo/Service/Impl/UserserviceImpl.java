@@ -13,44 +13,35 @@ import com.example.demo.Service.Userservice;
 public class UserserviceImpl implements Userservice {
 
     @Autowired
-    private Userrepository userRepository;
+    private Userrepository userrepository;
 
-    // ✅ CREATE
     @Override
     public User createUser(User user) {
-        return userRepository.save(user);
+        return userrepository.save(user);
     }
 
-    // ✅ READ (by id)
     @Override
     public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userrepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    // ✅ READ (all)
     @Override
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userrepository.findAll();
     }
 
-    // ✅ UPDATE
     @Override
     public User updateUser(Long id, User user) {
-        User existingUser = userRepository.findById(id).orElse(null);
-
-        if (existingUser != null) {
-            existingUser.setName(user.getName());
-            existingUser.setEmail(user.getEmail());
-            existingUser.setPassword(user.getPassword());
-            return userRepository.save(existingUser);
-        }
-
-        return null;
+        User existing = getUserById(id);
+        existing.setName(user.getName());
+        existing.setEmail(user.getEmail());
+        existing.setPassword(user.getPassword());
+        return userrepository.save(existing);
     }
 
-    // ✅ DELETE
     @Override
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        userrepository.deleteById(id);
     }
 }
